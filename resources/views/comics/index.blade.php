@@ -19,7 +19,7 @@
                         <td>{{ $comic->title }}</td>
                         <td>{{ $comic->series }}</td>
                         <td>
-                            <a class="btn btn-success" href="">
+                            <a class="btn btn-success" href="{{route('comics.show', $comic->id)}}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
                         </td>
