@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <h2 class="text-center">Tutti i nostri fumetti</h2>
+        <div class="row text-end">
+            <a href="{{ route('comics.create') }}">
+                <i class="fa-solid fa-plus"></i>Inserisci un nuovo fumetto 
+            </a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
