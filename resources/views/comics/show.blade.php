@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <a href="{{ route('comics.index') }}">Torna indietro</a> {{-- Grazie stefano --}}
+        <a href="{{ route('comics.index') }}" class="btn btn-success my-3">Torna alla lista</a>
         <h2 class="text-center">Dettagli fumetto</h2>
         <div class="card w-50 m-auto" >
             <img src="{{ $comics->thumb }}" class="card-img-top" alt="{{ $comics->title }}">
