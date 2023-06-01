@@ -10,41 +10,78 @@
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Titolo</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}">
+                @error('title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="thumb" class="form-label">Immagine</label>
-                <input type="text" class="form-control" id="thumb" name="thumb">
+                <input type="file" class="form-control @error('thumb') is-invalid @enderror" id="thumb" name="thumb" value="{{ old('thumb') }}">
+                @error('thumb')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="type" class="form-label">Tipologia</label>
-                <select id="type" name="type" class="form-select">
-                    <option selected>Seleziona</option>
-                    <option value="comic book">Comic Book</option>
-                    <option value="graphic novel">Graphic Novel</option>
+                <select id="type" name="type" class="form-select @error('type') is-invalid @enderror">
+                    <option></option>
+                    <option @selected(old('type') === 'comick book') value="comic book">Comic Book</option>
+                    <option @selected(old('type') === 'graphic novel') value="graphic novel">Graphic Novel</option>
                 </select>
+                @error('type')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="price" class="form-label">Prezzo</label>
-                <input type="text" class="form-control" id="price" name="price">
+            <label for="price" class="form-label">Prezzo</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}">
+                <span class="input-group-text">.00</span>
+                @error('price')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
-
+            
             <div class="mb-3">
                 <label for="sale_date" class="form-label">Data di uscita</label>
-                <input type="text" class="form-control" id="sale_date" name="sale_date">
+                <input type="date" class="form-control @error('sale_date') is-invalid @enderror" id="sale_date" name="sale_date" value="{{ old('sale_date') }}">
+                @error('sale_date')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="series" class="form-label">Serie</label>
-                <input type="text" class="form-control" id="series" name="series">
+                <input type="text" class="form-control @error('series') is-invalid @enderror" id="series" name="series" value="{{ old('series') }}">
+                @error('series')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label">Descrizione</label>
-                <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3">{{old('description')}}</textarea>
+                @error('description')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-success">Invia</button>

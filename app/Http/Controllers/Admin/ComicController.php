@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 
@@ -35,14 +36,14 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $data = $request->all();
-        $comics = new Comic();
-        $comics->fill($data);
-        $comics->save();
+        $data = $request->validated();
+        $comic = new Comic();
+        $comic->fill($data);
+        $comic->save();
 
-        return redirect()->route('comics.index', $comics->id);
+        return redirect()->route('comics.index', $comic->id);
     }
 
     /**
@@ -53,8 +54,8 @@ class ComicController extends Controller
      */
     public function show($id)
     {
-        $comics = Comic::findOrFail($id);
-        return view('comics.show', compact('comics'));
+        $comic = Comic::findOrFail($id);
+        return view('comics.show', compact('comic'));
     }
 
     /**
@@ -65,8 +66,8 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        $comics = Comic::findOrFail($id);
-        return view('comics.edit', compact('comics'));
+        $comic = Comic::findOrFail($id);
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -79,9 +80,9 @@ class ComicController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-        $comics = Comic::findOrFail($id);
-        $comics->update($data);
-        return redirect()->route('comics.show', $comics->id);
+        $comic = Comic::findOrFail($id);
+        $comic->update($data);
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
@@ -92,8 +93,8 @@ class ComicController extends Controller
      */
     public function destroy($id)
     {
-        $comics = Comic::findOrFail($id);
-        $comics->delete();
+        $comic = Comic::findOrFail($id);
+        $comic->delete();
         return redirect()->route('comics.index');
     }
 }
