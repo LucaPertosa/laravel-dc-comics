@@ -33,15 +33,15 @@
                             <form class="d-inline-block" action="{{ route('comics.destroy', $comic->id) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-danger ms_btn_cancel" data-comic-title="{{$comic->title}}">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
+        @include('partials.modal_delete')
     </div>
 @endsection
