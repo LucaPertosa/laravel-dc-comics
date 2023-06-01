@@ -42,11 +42,9 @@
                 @enderror
             </div>
 
-            <label for="price" class="form-label">Prezzo</label>
-            <div class="input-group mb-3">
-                <span class="input-group-text">$</span>
-                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}">
-                <span class="input-group-text">.00</span>
+            <div class="mb-3">
+                <label for="price" class="form-label">Prezzo</label>
+                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}" placeholder="Si prega di specificare la valuta prima: $12.00">
                 @error('price')
                     <div class="invalid-feedback">
                         {{ $message }}
